@@ -2,11 +2,14 @@
 
 namespace App\Exceptions;
 
+use App\Traits\GeneralTrait;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use GeneralTrait;
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -46,5 +49,10 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $this->returnError(201, 'this user is not authenticated');
     }
 }
