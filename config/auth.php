@@ -40,8 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'organizers' => [
+            'driver' => 'sanctum',
+            'provider' => 'organizers',
+        ],
     ],
-
+ 
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -64,7 +68,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
+        'organizers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Organizer::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

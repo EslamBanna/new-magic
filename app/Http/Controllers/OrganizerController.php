@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Organizer;
 use App\Traits\GeneralTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class OrganizerController extends Controller
 {
     use GeneralTrait;
     public function login(Request $request)
@@ -17,10 +16,10 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        if($validate->fails()){
+        if ($validate->fails()) {
             return $this->returnError(202, $validate->errors()->first());
         }
-        $user = User::where('email', $request->email)->first();
+        $user = Organizer::where('email', $request->email)->first();
         if (!$user || !Hash::check($request->password, $user->password)) {
             return $this->returnError(202, 'this user is not authenticated');
         }
@@ -34,7 +33,7 @@ class UserController extends Controller
         return $this->returnData('data', $data);
     }
 
-    public function register(Request $request)
+    public function createOrganizer(Request $request)
     {
         try {
             $validate = validator($request->all(), [
@@ -42,17 +41,22 @@ class UserController extends Controller
                 'name' => 'required',
                 'password' => 'required'
             ]);
-            if($validate->fails()){
+            if ($validate->fails()) {
                 return $this->returnError(202, $validate->errors()->first());
             }
-            $checkUser = User::where('email', $request->email)->first();
+            $checkUser = Organizer::where('email', $request->email)
+                ->orWhere('phone', $request->phone)
+                ->first();
             if ($checkUser) {
                 return $this->returnError(201, 'this account is existed already');
             }
-            User::create([
+            Organizer::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'phone' => $request->phone,
+                'role' => $request->role,
+                'consultant_category' => $request->consultant_category
             ]);
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
@@ -60,6 +64,14 @@ class UserController extends Controller
         }
     }
 
+    public function getOrganizer()
+    {
+        try {
+            return $this->returnData('data', Auth()->user());
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
     public function logout()
     {
         try {

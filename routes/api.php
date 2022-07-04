@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/sign-up', [UserController::class, 'register']);
 
-Route::group(['prefix' => 'auth', 'middleware' => 'auth:sanctum'], function(){
+Route::group(['prefix' => 'auth', 'middleware' => 'auth:sanctum'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
+});
 
+Route::group(['prefix' => 'organizer'], function () {
+
+    Route::post('/login', [OrganizerController::class, 'login']);
+    // for help, not the producation
+    Route::post('/create-organizer', [OrganizerController::class, 'createOrganizer']);
+    
+    
+    Route::group(['prefix' => 'auth', 'middleware' => 'auth:organizers'], function () {
+        Route::get('/organizer-info', [OrganizerController::class, 'getOrganizer']);
+        Route::post('/create-organizer', [OrganizerController::class, 'createOrganizer']);
+        Route::get('/logout', [OrganizerController::class, 'logout']);
+    });
 });
