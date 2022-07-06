@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CunsultantPackagesController;
 use App\Http\Controllers\CunsultantTestsController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
@@ -25,14 +26,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/get-sliders', [SliderController::class, 'getSliders']);
 Route::get('/get-cunsultant-packages', [CunsultantPackagesController::class, 'getCunsultantPackages']);
+Route::get('/get-feedbacks', [FeedbackController::class, 'getFeedbacks']);
+
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/sign-up', [UserController::class, 'register']);
 
 Route::group(['prefix' => 'auth', 'middleware' => 'auth:users'], function () {
     Route::post('/update-user', [UserController::class, 'updateUser']);
-    Route::get('/logout', [UserController::class, 'logout']);
 
     Route::post('/create-cunsultant-test', [CunsultantTestsController::class, 'createCunsultantTest']);
+
+    Route::post('/make-feedback', [FeedbackController::class, 'makeFeedback']);
+
+    Route::get('/logout', [UserController::class, 'logout']);
 });
 
 Route::group(['prefix' => 'organizer'], function () {
@@ -57,6 +63,8 @@ Route::group(['prefix' => 'organizer'], function () {
 
         Route::get('/get-cunsultant-tests', [CunsultantTestsController::class, 'getCunsultantTests']);
         Route::delete('/delete-cunsultant-test/{id}', [CunsultantTestsController::class, 'deleteCunsultantTest']);
+
+        Route::delete('/delete-feedback/{id}', [FeedbackController::class, 'deleteFeedback']);
 
         Route::get('/logout', [OrganizerController::class, 'logout']);
     });

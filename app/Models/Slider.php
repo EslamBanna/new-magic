@@ -11,6 +11,8 @@ class Slider extends Model
 
     protected $fillable = ['image_path', 'organizer_id'];
 
+    protected $hidden = ['created_at', 'updated_at'];
+    
     public function getImagePathAttribute($value)
     {
         return asset('images/sliders/' . $value);
