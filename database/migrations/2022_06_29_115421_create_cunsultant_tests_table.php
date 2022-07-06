@@ -20,10 +20,9 @@ class CreateCunsultantTestsTable extends Migration
             $table->integer('user_id');
             $table->integer('consult_id');
             $table->integer('age');
-            $table->string('consult_price');
+            // $table->string('consult_price');
             $table->string('phone');
             $table->string('job');
-                 
             $table->string('social_status');
             $table->string('apperance');
             $table->string('feel');
@@ -32,8 +31,8 @@ class CreateCunsultantTestsTable extends Migration
             $table->string('amount');
             $table->string('brand');
             $table->string('formats');
-            $table->string('want');
-            $table->string('what-want');
+            $table->longText('want');
+            // $table->longText('what_want');
             $table->timestamps();
         });
     }

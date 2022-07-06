@@ -15,10 +15,10 @@ class CreateCunsultantPackagesTable extends Migration
     {
         Schema::create('cunsultant_packages', function (Blueprint $table) {
             $table->id();
-            $table->longText('description');
+            $table->longText('description_en');
             $table->longText('description_ar');
             $table->float('price')->nullable();
-            $table->string('consultation_type');
+            $table->string('consultation_type_en');
             $table->string('consultation_type_ar');
             $table->timestamps();
         });

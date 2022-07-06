@@ -39,6 +39,8 @@ class OrganizerController extends Controller
             $validate = validator($request->all(), [
                 'email' => 'required|email',
                 'name' => 'required',
+                'phone' => 'required',
+                'role' => 'required|in:admin,consultant',
                 'password' => 'required'
             ]);
             if ($validate->fails()) {
@@ -76,6 +78,44 @@ class OrganizerController extends Controller
     {
         try {
             auth('sanctum')->user()->tokens()->delete();
+            return $this->returnSuccessMessage('success');
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
+    public function updateOrganizer(Request $request)
+    {
+        try {
+            $validate = validator($request->all(), [
+                'email' => 'required|email',
+                'name' => 'required',
+                'phone' => 'required',
+                'role' => 'required|in:admin,consultant',
+                'password' => 'required'
+            ]);
+            if ($validate->fails()) {
+                return $this->returnError(202, $validate->errors()->first());
+            }
+            $checkUser = Organizer::where('email', $request->email)
+                ->first();
+            if ($checkUser && $checkUser->id != Auth()->user()->id) {
+                return $this->returnError(201, 'this email is existed already');
+            }
+            $checkUser = Organizer::where('phone', $request->phone)
+                ->first();
+            if ($checkUser && $checkUser->id != Auth()->user()->id) {
+                return $this->returnError(201, 'this phone is existed already');
+            }
+            $organizer = Organizer::find(Auth()->user()->id);
+            $organizer->update([
+                'name' => $request->name ?? $organizer->name,
+                'email' => $request->email ?? $organizer->email,
+                'password' => Hash::make($request->password) ?? $organizer->password,
+                'phone' => $request->phone ?? $organizer->phone,
+                'role' => $request->role ?? $organizer->role,
+                'consultant_category' => $request->consultant_category ?? $organizer->consultant_category
+            ]);
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());

@@ -14,10 +14,10 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $validate = validator($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required'
         ]);
-        if($validate->fails()){
+        if ($validate->fails()) {
             return $this->returnError(202, $validate->errors()->first());
         }
         $user = User::where('email', $request->email)->first();
@@ -42,7 +42,7 @@ class UserController extends Controller
                 'name' => 'required',
                 'password' => 'required'
             ]);
-            if($validate->fails()){
+            if ($validate->fails()) {
                 return $this->returnError(202, $validate->errors()->first());
             }
             $checkUser = User::where('email', $request->email)->first();
@@ -64,6 +64,33 @@ class UserController extends Controller
     {
         try {
             auth('sanctum')->user()->tokens()->delete();
+            return $this->returnSuccessMessage('success');
+        } catch (\Exception $e) {
+            return $this->returnError(201, $e->getMessage());
+        }
+    }
+
+    public function updateUser(Request $request)
+    {
+        try {
+            $validate = validator($request->all(), [
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
+            if ($validate->fails()) {
+                return $this->returnError(202, $validate->errors()->first());
+            }
+            $check_email_existsance = User::where('email', $request->email)->first();
+            if ($check_email_existsance && $check_email_existsance->id != Auth::user()->id) {
+                return $this->returnError(201, 'this email is existed already');
+            }
+            $user = User::find(Auth::user()->id);
+            $user->update([
+                'name' => $request->name ?? $user->name,
+                'email' => $request->email ?? $user->email,
+                'password' =>  Hash::make($request->password) ?? $user->password,
+            ]);
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
