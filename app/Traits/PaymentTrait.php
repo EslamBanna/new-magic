@@ -43,22 +43,4 @@ trait PaymentTrait
         ]);
         return $pay_data;
     }
-
-
-    public function successPay(Request $request)
-    {
-        $data = [];
-        $data['key'] = $request->paymentId;
-        $data['keyType'] = 'paymentId';
-        $check_status =  $this->fathoorahService->getPaymentStatus($data);
-        if (!$check_status) {
-            return $this->returnError('206', 'fail');
-        }
-        return $this->returnSuccessMessage('success');
-    }
-
-    public function errorPay()
-    {
-        return $this->returnError('205', 'fail');
-    }
 }
