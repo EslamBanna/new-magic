@@ -3,6 +3,7 @@
 use App\Http\Controllers\CunsultantPackagesController;
 use App\Http\Controllers\CunsultantTestsController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\MyFatoorahController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
@@ -38,6 +39,10 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:users'], function () {
 
     Route::post('/make-feedback', [FeedbackController::class, 'makeFeedback']);
 
+    Route::post('/pay', [MyFatoorahController::class, 'pay']);
+    Route::get('/error-pay', [MyFatoorahController::class, 'errorPay']);
+    Route::get('/success-pay', [MyFatoorahController::class, 'successPay']);
+    
     Route::get('/logout', [UserController::class, 'logout']);
 });
 
