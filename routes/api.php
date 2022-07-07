@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CunsultantPackagesController;
 use App\Http\Controllers\CunsultantTestsController;
+use App\Http\Controllers\ExamsResultController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\MyFatoorahController;
 use App\Http\Controllers\OrganizerController;
@@ -42,9 +43,13 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:users'], function () {
 
     Route::post('/make-feedback', [FeedbackController::class, 'makeFeedback']);
 
+    Route::post("/face-test", [ExamsResultController::class, 'faceTest']);
+    Route::post("/body-test", [ExamsResultController::class, 'bodyTest']);
+    Route::post("/style-test", [ExamsResultController::class, 'styleTest']);
+
     Route::post('/pay', [MyFatoorahController::class, 'pay']);
- 
-    
+
+
     Route::get('/logout', [UserController::class, 'logout']);
 });
 
