@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CunsultantPackages;
 use App\Models\CunsultantTests;
 use App\Traits\GeneralTrait;
+use App\Traits\PaymentTrait;
 use Illuminate\Http\Request;
 
 class CunsultantTestsController extends Controller
 {
-    use GeneralTrait;
+    use GeneralTrait, PaymentTrait;
     public function createCunsultantTest(Request $request){
         try{
             $validate = validator($request->all(), [
@@ -31,6 +33,7 @@ class CunsultantTestsController extends Controller
             if($validate->fails()){
                 return $this->returnError(202, $validate->errors()->first());
             }
+            // return asset('/');
             CunsultantTests::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -49,7 +52,9 @@ class CunsultantTestsController extends Controller
                 'formats' => $request->formats,
                 'want' => $request->want
             ]);
-            return $this->returnSuccessMessage('success');
+            $cunsultant_packages = CunsultantPackages::find($request->consult_id);
+           return $this->pay($cunsultant_packages->price);
+            // return $this->returnSuccessMessage('success');
         }catch(\Exception $e){
             return $this->returnError(201, $e->getMessage());
         }

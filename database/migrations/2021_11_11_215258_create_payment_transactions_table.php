@@ -17,6 +17,7 @@ class CreatePaymentTransactionsTable extends Migration
             $table->id();
             $table->string('invoice_id');
             $table->integer('user_id');
+            $table->integer('value')->default(0);
             $table->timestamps();
         });
     }

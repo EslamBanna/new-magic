@@ -29,6 +29,9 @@ Route::get('/get-sliders', [SliderController::class, 'getSliders']);
 Route::get('/get-cunsultant-packages', [CunsultantPackagesController::class, 'getCunsultantPackages']);
 Route::get('/get-feedbacks', [FeedbackController::class, 'getFeedbacks']);
 
+Route::get('/error-pay', [MyFatoorahController::class, 'errorPay']);
+Route::get('/success-pay', [MyFatoorahController::class, 'successPay']);
+
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/sign-up', [UserController::class, 'register']);
 
@@ -40,8 +43,7 @@ Route::group(['prefix' => 'auth', 'middleware' => 'auth:users'], function () {
     Route::post('/make-feedback', [FeedbackController::class, 'makeFeedback']);
 
     Route::post('/pay', [MyFatoorahController::class, 'pay']);
-    Route::get('/error-pay', [MyFatoorahController::class, 'errorPay']);
-    Route::get('/success-pay', [MyFatoorahController::class, 'successPay']);
+ 
     
     Route::get('/logout', [UserController::class, 'logout']);
 });

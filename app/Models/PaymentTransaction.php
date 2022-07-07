@@ -9,5 +9,5 @@ class PaymentTransaction extends Model
 {
     use HasFactory;
     protected $table = 'payment_transactions';
-    protected $fillable = ['invoice_id','user_id'];
+    protected $fillable = ['invoice_id','user_id', 'value'];
 }
