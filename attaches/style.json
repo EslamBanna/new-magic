@@ -1,14 +1,14 @@
 {
     "color": "7",
-    "makeup": "a6",
-    "hairstyle": "b5",
-    "dress": "c4",
-    "blouse": "d3",
-    "pants": "e2",
-    "skirt": "f1",
-    "shoes": "g7",
-    "bag": "h6",
-    "jacket": "i5",
-    "accessory": "j4",
-    "appearance": "k3"
+    "makeup": "6",
+    "hair_style": "5",
+    "dress": "4",
+    "blouse": "3",
+    "pants": "2",
+    "skirt": "1",
+    "shoes": "7",
+    "bag": "6",
+    "jacket": "5",
+    "accessory": "4",
+    "appearance": "3"
 }
