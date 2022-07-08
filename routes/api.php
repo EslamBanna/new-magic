@@ -36,6 +36,11 @@ Route::get('/success-pay', [MyFatoorahController::class, 'successPay']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/sign-up', [UserController::class, 'register']);
 
+Route::post('/forget-password', [UserController::class, 'forgetPassword']);
+Route::post('/get-reset-password-code', [UserController::class, 'getResetPasswordCode']);
+Route::post('/update-password', [UserController::class, 'updatePassword']);
+
+
 Route::group(['prefix' => 'auth', 'middleware' => 'auth:users'], function () {
     Route::post('/update-user', [UserController::class, 'updateUser']);
 
