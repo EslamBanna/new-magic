@@ -76,6 +76,37 @@ class ExamsResultController extends Controller
     public function bodyTest(Request $request)
     {
         try {
+            $validate = Validator($request->all(), [
+                "neck" => "required",
+                "shoulder" => "required",
+                "chest" => "required",
+                "lower_chest" => "required",
+                "center" => "required",
+                "waist" => "required",
+                "buttock" => "required",
+                "circumference_of_the_thighs" => "required",
+                "length_of_thighs" => "required",
+                "leg_length" => "required",
+                "trunk_length" => "required",
+                "total" => "required",
+                "physique" => "required|in:thin,medium,fat",
+                "body_length" => "required|in:tall,medium,short",
+                "neck_t" => "required|in:short_neck,medium_neck,tall_neck",
+                "shoulders" => "required|in:proportion,small,wide",
+                "shoulders_shape" => "required|in:curved,acute_angles",
+                "repel" => "required|in:small,proportion,big",
+                "the_middle" => "required|in:unspecific,specific,fat",
+                "the_abdomen" => "required|in:flat,medium,fat",
+                "trunk" => "required|in:down_middle,high_middle,proportional_middle",
+                "buttocks" => "required|in:flat_buttocks,proportional_buttocks,notable_buttocks,big_buttocks",
+                "the_thighs" => "required|in:thighs_proportion,medium_thighs,big_thighs",
+                "leg" => "required|in:tall_leg,short_leg,proportional_leg",
+                "leg_muscle" => "required|in:thin_muscle,medium_muscle,big_muscle",
+            ]);
+            if ($validate->fails()) {
+                return $this->returnError(202, $validate->errors()->first());
+            }
+            // return $request;
             //validation
             $nulls = 0;
             $max = 0;
@@ -89,7 +120,7 @@ class ExamsResultController extends Controller
                 if (!isset($value)) {
                     $nulls++;
                 }
-                if ($key == 'Shoulder' || $key == 'Chest' || $key == 'waist' || $key == 'lchest' || $key == 'Buttock' || $key == 'cthighs') {
+                if ($key == 'shoulder' || $key == 'chest' || $key == 'waist' || $key == 'lower_chest' || $key == 'buttock' || $key == 'circumference_of_the_thighs') {
                     if ((int)$value > $max) {
                         $max = (int)$value;
                         $max_choices[0] = $key;
@@ -105,29 +136,29 @@ class ExamsResultController extends Controller
                 }
             }
             //to ensure that he entered all the sizes 
-            if (count($request->request) < 27) {
+            if (count($request->request) < 26) {
                 return $this->returnError(202, 'Please enter all the sizes  of your body');
             }
 
             //determine body type
             if (count($max_choices) == 1) {
-                if ($max_choices[0] == 'Shoulder') {
+                if ($max_choices[0] == 'shoulder') {
                     if ($request->Shoulder - $request->Buttock > 5) {
                         $result = 'Inverted_Triangle';
                     } else {
-                        if ($request->Themiddle == "Unspecific") {
+                        if ($request->Themiddle == "unspecific") {
                             $result = 'Rectangle';
-                        } elseif ($request->Themiddle == "Specific") {
+                        } elseif ($request->Themiddle == "specific") {
                             $result = 'clock';
                         } else {
                             $result = 'Inverted_Triangle';
                         }
                     }
-                } elseif ($max_choices[0] == 'Chest') {
+                } elseif ($max_choices[0] == 'chest') {
                     $result = 'Strawberry';
-                } elseif ($max_choices[0] == 'cthighs') {
+                } elseif ($max_choices[0] == 'circumference_of_the_thighs') {
                     $result = 'Triangle';
-                } elseif ($max_choices[0] == 'Buttock') {
+                } elseif ($max_choices[0] == 'buttock') {
                     $result = 'Pear';
                 } else {
                     $result = 'Diamond';
@@ -136,9 +167,9 @@ class ExamsResultController extends Controller
                 //then its apple or diamond or maybe rectangle or clock
                 if (in_array('center', $max_choices) && in_array('waist', $max_choices)) {
                     $result = 'Apple';
-                } elseif (in_array('Shoulder', $max_choices) && in_array('Buttock', $max_choices) && $request->Themiddle == "Unspecific") {
+                } elseif (in_array('shoulder', $max_choices) && in_array('buttock', $max_choices) && $request->the_middle == "unspecific") {
                     $result = 'Rectangle';
-                } elseif (in_array('Shoulder', $max_choices) && in_array('Buttock', $max_choices) && $request->Themiddle == "Specific") {
+                } elseif (in_array('shoulder', $max_choices) && in_array('buttock', $max_choices) && $request->the_middle == "specific") {
                     $result = 'clock';
                 } else {
                     $result = 'Inverted_Triangle';

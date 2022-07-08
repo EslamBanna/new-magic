@@ -14,5 +14,6 @@ class ExamsResult extends Model
         'first_exam',
         'second_exam',
         'third_exam',
+        'note'
     ];
 }

@@ -15,11 +15,12 @@ class CreateExamsResultsTable extends Migration
     {
         Schema::create('exams_results', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->json('first_exam')->nullable();
             $table->json('second_exam')->nullable();
             $table->json('third_exam')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->longText('note')->nullable();
             $table->timestamps();
         });
     }
