@@ -5,8 +5,10 @@ namespace App\Exceptions;
 use App\Traits\GeneralTrait;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Route;
 use Throwable;
-
+use Auth;
+use URL;
 class Handler extends ExceptionHandler
 {
     use GeneralTrait;
@@ -53,6 +55,21 @@ class Handler extends ExceptionHandler
 
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+        // return view('welcome');
+        // $test = Route::current()->getName(); 
+        // return ;
+        // $currentURL = URL::current();
+        // return $this->returnError(201, asset('/'));
+        // $request->request->all();
+        // $test = $request->request->all();
+        // dd($test);
+        // $test= $test->server;
+        // dd($test->parameters);
+        // dd($request->server);
+        // if (Auth::check()) {
+            // The user is logged in...
+            // return $this->returnError(201, 'authenticated');
+        // }
         return $this->returnError(201, 'this user is not authenticated');
     }
 }
