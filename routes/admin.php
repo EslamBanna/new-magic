@@ -13,11 +13,13 @@ use App\Models\CunsultantPackage;
 use App\Models\consultantTest;
 use App\Models\CunsultantPackages;
 use App\Models\CunsultantTests;
-
+Route::get('/test', function () {
+    return 'admin';
+});
 Route::group(['middleware' => 'auth:admin'], function () {
-    Route::get('/test', function () {
-        return 'admin';
-    });
+    // Route::get('/test', function () {
+    //     return 'admin';
+    // });
     Route::get('admin/dashboard', function () {
         $counter = [];
         // $chatMessages = ChatMessage::all();

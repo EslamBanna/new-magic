@@ -212,6 +212,9 @@ class ExamsResultController extends Controller
                     'note' => $request->note,
                 ]);
             }
+            $result_image = asset('images/body/' . $result . '.png');
+            $data = ['shape' => $result, 'image' => $result_image];
+            return $this->returnData('data', $data);
 
             return $this->returnData('data', $result);
         } catch (\Exception $e) {
@@ -353,7 +356,11 @@ class ExamsResultController extends Controller
                     'note' => $request->note,
                 ]);
             }
-            return $this->returnData('data', $result);
+            $rand_index = rand(0, count($result) - 1);
+            $result_image = asset('images/style/' . $result[$rand_index] . '.jpg');
+            $data = ['shape' => $result, 'image' => $result_image];
+            return $this->returnData('data', $data);
+            // return $this->returnData('data', $result);
         } catch (\Exception $e) {
             return $this->returnError(202, $e->getMessage());
         }
