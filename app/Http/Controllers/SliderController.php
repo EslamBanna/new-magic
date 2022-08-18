@@ -16,6 +16,10 @@ class SliderController extends Controller
         try {
             $validate = validator($request->all(), [
                 'image' => 'required|mimes:jpeg,jpg,png,gif|max:2048',
+                'title_en' => 'string|max:255',
+                'description_en' => 'string|max:255',
+                'title_ar' => 'string|max:255',
+                'description_ar' => 'string|max:255',
             ]);
             if ($validate->fails()) {
                 return $this->returnError(202, $validate->errors()->first());
@@ -23,7 +27,11 @@ class SliderController extends Controller
             $slider = $this->saveImage($request->file('image'), 'slider');
             Slider::create([
                 'image_path' => $slider,
-                'organizer_id' => Auth()->user()->id
+                'organizer_id' => Auth()->user()->id,
+                'title_en' => $request->title_en,
+                'description_en' => $request->description_en,
+                'title_ar' => $request->title_ar,
+                'description_ar' => $request->description_ar
             ]);
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {
@@ -31,10 +39,19 @@ class SliderController extends Controller
         }
     }
 
-    public function getSliders()
+    public function getSliders(Request $request)
     {
         try {
-            $sliders = Slider::select('id', 'image_path')->get();
+            $lang = $request->header('lang') ?? 'en';
+            if($lang != 'ar' && $lang != 'en'){
+                return $this->returnError(201, 'lang is not valid');
+            }
+            $sliders = Slider::select(
+                'id',
+                'image_path',
+                'title_' . $lang . ' as title',
+                'description_' . $lang . ' as description'
+            )->get();
             return $this->returnData('data', $sliders);
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
@@ -60,6 +77,10 @@ class SliderController extends Controller
         try {
             $validate = validator($request->all(), [
                 'image' => 'required|mimes:jpeg,jpg,png,gif|max:2048',
+                'title_en' => 'string|max:255',
+                'description_en' => 'string|max:255',
+                'title_ar' => 'string|max:255',
+                'description_ar' => 'string|max:255',
             ]);
             if ($validate->fails()) {
                 return $this->returnError(202, $validate->errors()->first());
@@ -72,7 +93,11 @@ class SliderController extends Controller
             $slider = $this->saveImage($request->file('image'), 'slider');
             Slider::create([
                 'image_path' => $slider,
-                'organizer_id' => Auth()->user()->id
+                'organizer_id' => Auth()->user()->id,
+                'title_en' => $request->title_en,
+                'description_en' => $request->description_en,
+                'title_ar' => $request->title_ar,
+                'description_ar' => $request->description_ar
             ]);
             return $this->returnSuccessMessage('success');
         } catch (\Exception $e) {

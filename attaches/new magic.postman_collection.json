@@ -1,0 +1,954 @@
+{
+	"info": {
+		"_postman_id": "f06ca984-4aaf-4d63-bbcb-9c732794999a",
+		"name": "new magic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17948569"
+	},
+	"item": [
+		{
+			"name": "authentication",
+			"item": [
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://new-magic-api.webautobazaar.com/api/login",
+									"protocol": "https",
+									"host": [
+										"new-magic-api",
+										"webautobazaar",
+										"com"
+									],
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sign-up",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"eslam\",\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/sign-up",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"sign-up"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "user info",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer fY5hjV3G2aeBAIqzEXguhrFDDI2T4KECsYvGvFiV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/user",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer fY5hjV3G2aeBAIqzEXguhrFDDI2T4KECsYvGvFiV",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/auth/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update user info",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer tVRcVDxSlIuW3II5o8xVhF8z51PTGJ6079BnUKCi",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"eslam2\",\r\n    \"email\": \"eslam2@gmail.com\",\r\n    \"password\": \"456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/auth/update-user",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"auth",
+										"update-user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "forget password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test@test.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/forget-password",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"forget-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get reset password code",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/get-reset-password-code",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"get-reset-password-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"user_id\": 1,\r\n    \"password\": \"456\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/update-password",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"update-password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "organizer",
+					"item": [
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"test5@test.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/organizer/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"organizer",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-organizer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer XkZ8Nrb3OCw6f8nYEbmbxmx3sFJePfRtJ07BJ1sW",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"eslam\",\r\n    \"email\": \"test5@test.com\",\r\n     \"phone\": \"01235\",\r\n    \"password\": \"123\",\r\n    \"role\": \"admin\",\r\n    \"consultant_category\": \"\"\r\n   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/organizer/auth/create-organizer",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"organizer",
+										"auth",
+										"create-organizer"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "organizer info",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer cfwr0VYPumyZ9qKZjuqHMvvFSNaxi5ajjdAphyI4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/organizer/auth/organizer-info",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"organizer",
+										"auth",
+										"organizer-info"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "logout",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer hpOxkGlHAcTDcBmvyHhge1Iwg33xRRvWPkkXZYWq",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "localhost:8000/api/organizer/auth/logout",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"organizer",
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update organizer",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer BXdmw5MjfyxjTxtEdncVtOZH8DYofcZOr58mdwGL",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"eslam2\",\r\n    \"email\": \"test9@test.com\",\r\n    \"phone\": \"012352\",\r\n    \"password\": \"1232\",\r\n    \"role\": \"consultant\",\r\n    \"consultant_category\": \"test\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/api/organizer/auth/update-organizer",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"organizer",
+										"auth",
+										"update-organizer"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "slider",
+			"item": [
+				{
+					"name": "create slider",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer T8WLRAhUhC3It8ofybVj0otrDvHqUKhwAbzxxQBi",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/E:/a.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/create-slider",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"create-slider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-sliders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://new-magic-api.webautobazaar.com/api/get-sliders",
+							"protocol": "https",
+							"host": [
+								"new-magic-api",
+								"webautobazaar",
+								"com"
+							],
+							"path": [
+								"api",
+								"get-sliders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-slider",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer T8WLRAhUhC3It8ofybVj0otrDvHqUKhwAbzxxQBi",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/E:/a.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/update-slider/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"update-slider",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-slider",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer T8WLRAhUhC3It8ofybVj0otrDvHqUKhwAbzxxQBi",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/delete-slider/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"delete-slider",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cunsultant packages",
+			"item": [
+				{
+					"name": "create-cunsultant-package",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer H1oxT9mGNAfB2NUrInnCBR6sAgDRJkmaSyuOQNi9",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description_en\": \"de enn\",\r\n    \"description_ar\": \"de arr\",\r\n    \"price\": \"100\",\r\n    \"consultation_type_en\": \"co en\",\r\n    \"consultation_type_ar\": \"co ar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/create-cunsultant-package",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"create-cunsultant-package"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-cunsultant-package",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer McQ3DjbvqhPJCnRyELroEaHAmqgL9URdSeLbZlvD",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description_en\": \"de enn2\",\r\n    \"description_ar\": \"de arr2\",\r\n    \"price\": \"1002\",\r\n    \"consultation_type_en\": \"co en2\",\r\n    \"consultation_type_ar\": \"co ar2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/update-cunsultant-package/3",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"update-cunsultant-package",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-cunsultant-package",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer McQ3DjbvqhPJCnRyELroEaHAmqgL9URdSeLbZlvD",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/delete-cunsultant-package/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"delete-cunsultant-package",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-cunsultant-packages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/get-cunsultant-packages",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get-cunsultant-packages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cunsultant tests",
+			"item": [
+				{
+					"name": "create-cunsultant-test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer aA8LQ1nzLinm66Yq49ceK3NQyenCGcDHl79UoRNu",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"consult_id\": 1,\r\n    \"name\": \"mona\",\r\n    \"email\": \"abc@gmail.com\",\r\n    \"age\": 22,\r\n    \"phone\": \"018\",\r\n    \"job\": \"doctor\",\r\n    \"social_status\": \"married\",\r\n    \"apperance\": \"classic\",\r\n    \"feel\": \"satisfied\",\r\n    \"interest\": \"interested\",\r\n    \"budget\": \"yes\",\r\n    \"amount\": \"123\",\r\n    \"brand\": \"test\",\r\n    \"formats\": \"party\",\r\n    \"want\": \"test test tes test test test test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/create-cunsultant-test",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"create-cunsultant-test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-cunsultant-tests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer GeBQE7y5rBra86FDrkE9mCRJ53pxALvFRrPoW3iy",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/get-cunsultant-tests",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"get-cunsultant-tests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-cunsultant-test",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer GeBQE7y5rBra86FDrkE9mCRJ53pxALvFRrPoW3iy",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/delete-cunsultant-test/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"delete-cunsultant-test",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feedbacks",
+			"item": [
+				{
+					"name": "make-feedback",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 6QbDdCnHGmOHZpevBA2RHoXuzkHVYiqVueLUBNjT",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rate\": 6,\r\n    \"comment\": \"very nice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/make-feedback",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"make-feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-feedbacks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8000/api/get-feedbacks",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"get-feedbacks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-feedbacks",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer 3adnnOwCROGlyrZliGSCGc5cVTkmwq9T68gMveOl",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/api/organizer/auth/delete-feedback/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"organizer",
+								"auth",
+								"delete-feedback",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "general tests",
+			"item": [
+				{
+					"name": "face test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer QDWhabw7GktjFz377ZQ7nWgLct0L6H4hKM97Fub4",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fore_head\": 100,\r\n    \"cheek\": 100,\r\n    \"face_length\": 120,\r\n    \"jaw\": 50,\r\n    \"chin_shape\": \"tapered\",\r\n    \"salience_radio\": \"no\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/face-test",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"face-test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "body test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer PWgzcXxITasC66wJQI5JeK8foo3v2yf0eFPyEaIa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"neck\" : 1,\r\n    \"shoulder\" : 2,\r\n    \"chest\" : 3,\r\n    \"lower_chest\" : 4,\r\n    \"center\" : 5,\r\n    \"waist\" : 6,\r\n    \"buttock\" : 7,\r\n    \"circumference_of_the_thighs\" : 8,\r\n    \"length_of_thighs\" : 9,\r\n    \"leg_length\" : 10,\r\n    \"trunk_length\" : 11,\r\n    \"total\" : 12,\r\n    \"physique\" : \"thin\",\r\n    \"body_length\" : \"medium\",\r\n    \"neck_t\" : \"medium_neck\",\r\n    \"shoulders\" : \"proportion\",\r\n    \"shoulders_shape\" : \"acute_angles\",\r\n    \"repel\" : \"big\",\r\n    \"the_middle\" : \"unspecific\",\r\n    \"the_abdomen\" : \"medium\",\r\n    \"trunk\" : \"proportional_middle\",\r\n    \"buttocks\" : \"flat_buttocks\",\r\n    \"the_thighs\" : \"medium_thighs\",\r\n    \"leg\" : \"proportional_leg\",\r\n    \"leg_muscle\" : \"thin_muscle\",\r\n    \"note\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/body-test",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"body-test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "style test",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer PWgzcXxITasC66wJQI5JeK8foo3v2yf0eFPyEaIa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"color\": \"7\",\r\n    \"makeup\": \"6\",\r\n    \"hair_style\": \"5\",\r\n    \"dress\": \"4\",\r\n    \"blouse\": \"3\",\r\n    \"pants\": \"2\",\r\n    \"skirt\": \"1\",\r\n    \"shoes\": \"7\",\r\n    \"bag\": \"6\",\r\n    \"jacket\": \"5\",\r\n    \"accessory\": \"4\",\r\n    \"appearance\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/style-test",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"style-test"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

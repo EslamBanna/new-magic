@@ -69,7 +69,10 @@ class ExamsResultController extends Controller
                     'note' => $request->note,
                 ]);
             }
-            return $this->returnData('data', $face_shape);
+            $replace_space = str_replace(' ', '_', $face_shape);
+            $result_image = asset('images/faces/' . $replace_space . '.png');
+            $data = ['shape' => $face_shape, 'image' => $result_image];
+            return $this->returnData('data', $data);
         } catch (\Exception $e) {
             return $this->returnError(202, $e->getMessage());
         }

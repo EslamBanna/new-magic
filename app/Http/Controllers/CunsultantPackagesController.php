@@ -79,10 +79,19 @@ class CunsultantPackagesController extends Controller
         }
     }
 
-    public function getCunsultantPackages()
+    public function getCunsultantPackages(Request $request)
     {
         try {
-            $cunsultantPackages = CunsultantPackages::all();
+            $lang = $request->header('lang') ?? 'en';
+            if($lang != 'ar' && $lang != 'en'){
+                return $this->returnError(201, 'lang is not valid');
+            }
+            $cunsultantPackages = CunsultantPackages::select(
+                'id',
+                'description_' . $lang . ' as description',
+                'price',
+                'consultation_type_' . $lang . ' as consultation_type'
+            )->get();
             return $this->returnData('data', $cunsultantPackages);
         } catch (\Exception $e) {
             return $this->returnError(201, $e->getMessage());
