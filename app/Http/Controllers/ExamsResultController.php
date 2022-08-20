@@ -356,8 +356,15 @@ class ExamsResultController extends Controller
                     'note' => $request->note,
                 ]);
             }
-            $rand_index = rand(0, count($result) - 1);
-            $result_image = asset('images/style/' . $result[$rand_index] . '.jpg');
+            $rand_index = 0;
+            if (is_array($result)) {
+                $rand_index = rand(0, count($result) - 1);
+                $result_image = asset('images/style/' . $result[$rand_index] . '.jpg');
+            } else {
+                $result_image = asset('images/style/' . $result . '.jpg');
+            }
+            // $rand_index = rand(0, count($result) - 1);
+            // $result_image = asset('images/style/' . $result[$rand_index] . '.jpg');
             $data = ['shape' => $result, 'image' => $result_image];
             return $this->returnData('data', $data);
             // return $this->returnData('data', $result);

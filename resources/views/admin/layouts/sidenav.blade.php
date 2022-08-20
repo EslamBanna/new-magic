@@ -71,6 +71,11 @@
                     </li>
 
 
+                         <li class=" nav-item"><a href="{{route('admin.feedback')}}"><i class="fas fa-users icons"></i><span
+                                class="menu-title" data-i18n="">Feedbacks</span></a>
+                    </li>
+
+
                     {{-- <li class=" nav-item"><a href="{{route('admin-messages')}}"><i class="fas fa-users icons"></i><span
                                 class="menu-title" data-i18n="">Messages</span></a>
                     </li> --}}

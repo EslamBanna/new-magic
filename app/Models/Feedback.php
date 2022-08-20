@@ -12,12 +12,24 @@ class Feedback extends Model
     protected $fillable = [
         'user_id',
         'rate',
+        'title',
         'comment',
     ];
 
     protected $hidden = ['updated_at'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function getTitleAttribute($value)
+    {
+        return $value ?? "";
+    }
+
+    public function getCommentAttribute($value)
+    {
+        return $value ?? "";
     }
 }

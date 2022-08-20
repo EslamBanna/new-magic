@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\OrganizerController;
 use App\Http\Controllers\admin\SliderController;
 use App\Http\Controllers\admin\SupportController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 use App\Models\ChatMessage;
 use App\Models\User;
@@ -55,6 +56,16 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     //send email to support admin
     Route::post('admin/support', [SupportController::class,'contactemail'])->name('admin.contact.submit');
+
+
+    // feedback
+
+    Route::get('admin/feedback', [FeedbackController::class,'adminGetFeedbacks'])->name('admin.feedback');
+    Route::delete('delete/feedback/{id}', [FeedbackController::class,'deleteFeedback'])->name('delete.feedback');
+    /************************************* end messages ********************/
+
+    // ######################################
+
 });
 
 // get result of user exam
@@ -70,3 +81,5 @@ Route::group(['middleware' => 'guest:admin'], function () {
     Route::get('login', [LoginController::class, 'getLogin'])->name('get.admin.login');
     Route::post('login', [LoginController::class, 'login'])->name('admin.login');
 });
+
+

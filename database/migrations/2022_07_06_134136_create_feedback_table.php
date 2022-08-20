@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('rate')->default(0);
+            $table->string('title')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
         });
